@@ -1,0 +1,15 @@
+version: '3'
+services: 
+    mysql:
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: supersecret
+            MYSQL_DATABASE: robotblog
+            MYSQL_USER: robot
+            MYSQL_PASSWORD: supersecret
+        ports:
+            - "3306:3306"
+        volumes: 
+            - ./db/data:/var/lib/mysql
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

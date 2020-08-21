@@ -1,0 +1,13 @@
+.notfound_img {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered_component {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align: center;
+}

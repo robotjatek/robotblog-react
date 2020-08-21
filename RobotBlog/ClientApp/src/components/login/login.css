@@ -1,0 +1,83 @@
+/* Move this to app.css */
+#header_profile {
+    position: relative;
+    float: right;
+}
+
+.profile_links {
+    text-align: right;
+    vertical-align: text-top;
+    font-size: 11px;
+    color: white;
+    margin-top: -5px;
+}
+
+.profile_links button {
+    color: white;
+    text-align: right;
+    vertical-align: text-top;
+    font-size: 11px;
+    padding: 0;
+    margin-top: -1px;
+}
+
+.profile_links button:hover {
+    color: white;
+}
+
+#profile_pic_container {
+    min-width: 100px;
+    height: 116px;
+}
+
+#profile_status {
+    float: left;
+    min-width: 10px;
+    height: 100%;
+    background-color: rgb(56,137,239);
+}
+
+#header_profile_pic {
+    height: 100%;
+    padding: 10px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.modal-content {
+    background-color: rgba(127, 127, 127, 0.6);
+    border-color: grey;
+    color: white;
+    border-radius: 0px;
+}
+
+.form-control {
+    background-color: rgba(0,0,0,0);
+    border-color: gray;
+    border-radius: 0px;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control:focus {
+    background-color: rgba(0,0,0,0);
+    color: white;
+}
+
+.close {
+    color: white;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn-primary {
+    background-color: rgb(56,137,239);
+}

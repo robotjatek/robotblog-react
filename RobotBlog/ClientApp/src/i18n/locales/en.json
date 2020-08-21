@@ -1,0 +1,29 @@
+{
+    "nav": {
+        "home": "Home",
+        "blog": "Blog",
+        "cv": "CV",
+        "projects": "Projects",
+        "social": "Social"
+    },
+    "not_found": {
+        "not_found": "Page cannot be found"
+    },
+    "lang": {
+        "en": "English",
+        "hu": "Magyar",
+        "language": "Language"
+    },
+    "login": {
+        "login": "Sign in",
+        "register": "Register",
+        "settings": "Settings",
+        "logout": "Sign out",
+        "email": "Email",
+        "password": "Password",
+        "enter-email": "Enter email",
+        "cancel": "Cancel",
+        "failed": "Login failed",
+        "registration-failed": "Registration failed"
+    }
+}

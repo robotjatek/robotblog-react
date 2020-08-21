@@ -1,0 +1,61 @@
+#bg_wrapper {
+  margin: 0px;
+}
+
+.bg_image {
+  height: 100%;
+  width: 100%;
+  background: url("/img/bg/aurora.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: fixed;
+}
+
+#main_container {
+  padding: 10px 0 10px 0;
+  position: relative;
+  min-width: 90%;
+}
+
+#header {
+  background-color: rgba(127, 127, 127, 0.5);
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#header_top {
+  padding: 5px;
+  min-height: 140px;
+}
+
+#navbar_status {
+  left: 0;
+  position: absolute;
+  min-height: 90%;
+  min-width: 10px;
+  background-color: rgb(45, 137, 239);
+}
+
+#content {
+  background-color: rgba(127, 127, 127, 0.5);
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.navbar {
+  background: none !important;
+}
+
+.navbar .navbar-nav a.active {
+  color: rgb(207, 207, 207) !important;
+}
+
+.navbar .navbar-nav a {
+  color: white !important;
+  padding: 5px 5px !important;
+  text-decoration: none;
+}
