@@ -1,2 +1,3 @@
-import NotAvailable from "./NotAvailable";
+import NotAvailable from './NotAvailable';
+
 export default NotAvailable;
