@@ -27,7 +27,6 @@ const BlogPost = () => {
                 translated: translated
             };
             setCurrentPost(currentPostData);
-            console.log(currentPostData);
             setLoading(false);
         }
     }, [blogPost, i18n.language]);

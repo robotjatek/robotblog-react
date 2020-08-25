@@ -5,15 +5,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, Container } from 'react-bootstrap';
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import NotFound from "./components/not-found/NotFound";
-import Login from "./components/login/Login";
+import Login from "./components/login";
 import initReactnPersist from "reactn-persist";
 import ProtectedRoute from "./router/ProtectedRoute";
-import LanguageSelector from "./components/language-selector/language-selector";
+import LanguageSelector from "./components/language-selector";
 import { useTranslation } from 'react-i18next';
 import initI18n from './i18n/i18n';
 import CvPage from './pages/cv/cvPage';
 import Blog from './pages/blog';
-import BlogPost from './pages/blog/BlogPost/BlogPost';
+import BlogPost from './pages/blog/BlogPost';
 
 initReactnPersist({ storage: localStorage });
 setGlobal({ loginResult: null });
