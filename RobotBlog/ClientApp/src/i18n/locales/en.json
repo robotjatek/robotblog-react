@@ -25,5 +25,8 @@
         "cancel": "Cancel",
         "failed": "Login failed",
         "registration-failed": "Registration failed"
+    },
+    "blog": {
+        "not-available": "This content is not available in {{language}}"
     }
 }

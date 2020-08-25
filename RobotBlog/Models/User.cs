@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -21,6 +22,8 @@ namespace RobotBlog.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public string Username { get; set; }
+
         [JsonIgnore]
         [Required]
         public string Password { get; set; }
@@ -30,5 +33,7 @@ namespace RobotBlog.Models
 
         [DefaultValue("hu")]
         public string PreferredLanguage { get; set; }
+
+        public ICollection<BlogPost> BlogPosts { get; set; }
     }
 }

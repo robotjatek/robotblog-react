@@ -27,7 +27,7 @@ Mainly backend development in .net core. Occasionally backend development in JAV
 
 - C# (.net Core)
 - Java (Spring)
-- ElasticSearch
+- Elasticsearch
 - Neo4J
 - On rare occasions: Little changes in frontend codes written in Angular
 
@@ -39,13 +39,13 @@ Mainly backend development in .net core. Occasionally backend development in JAV
 
 Monitoring and filtering fire sensor outputs. Aid maintenance workers job.
 
-Java 8, Spring boot, JHipster, AngularJS, FIR filter, redis, mysql, zabbix
+*Java 8, Spring boot, JHipster, AngularJS, FIR filter, redis, mysql, zabbix*
 
 ----
 
 ##### EuroOne SzEAT
 
-*.net Core, ElasticSearch, Neo4J*
+*.net Core, Elasticsearch, Neo4J*
 
 ----
 
@@ -53,7 +53,7 @@ Java 8, Spring boot, JHipster, AngularJS, FIR filter, redis, mysql, zabbix
 
 A caching mechanism between mobile clients and the Arbonne server.
 
-*C# (.net Core), ElasticSearch*
+*C# (.net Core), Elasticsearch*
 
 ----
 
@@ -61,7 +61,7 @@ A caching mechanism between mobile clients and the Arbonne server.
 
 A webshop for Senegence distributors. Integrated with other Senegence systems.
 
-*C# (.net Core), Azure, CosmosDb*
+*C# (.net Core), Azure, Cosmos DB*
 
 ----
 
@@ -69,7 +69,7 @@ A webshop for Senegence distributors. Integrated with other Senegence systems.
 
 Monitoring and relaying sensor data. Web UI for maintenance work.
 
-*JAVA 11,  Spring boot, JHipster, MQTT, RabbitMQ, Angular, mysql*
+*JAVA 11,  Spring boot, JHipster, MQTT, RabbitMQ, Angular, MySQL*
 
 ----
 

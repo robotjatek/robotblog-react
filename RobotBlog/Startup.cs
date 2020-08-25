@@ -11,7 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+using RobotBlog.Controllers;
 using RobotBlog.Models;
+using RobotBlog.Services.Blog;
 using RobotBlog.Services.Login;
 
 namespace RobotBlog
@@ -29,7 +31,10 @@ namespace RobotBlog
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(config =>
             {
                 config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -95,6 +100,7 @@ namespace RobotBlog
             services.AddDbContext<Context>();
 
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IBlogService, BlogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

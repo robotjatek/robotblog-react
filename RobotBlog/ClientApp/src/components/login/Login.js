@@ -61,7 +61,7 @@ const Login = () => {
                     </div>
                     <div id="profile_pic_container">
                         <div id="profile_status"></div>
-                        <img id="header_profile_pic" src="./img/logo.png" alt="Profile pic" title={globalState.loginResult.user.email} />
+                        <img id="header_profile_pic" src="/img/logo.png" alt="Profile pic" title={globalState.loginResult.user.email} />
                     </div>
                 </div> :
                 <div id="not-logged-in">

@@ -12,6 +12,8 @@ import LanguageSelector from "./components/language-selector/language-selector";
 import { useTranslation } from 'react-i18next';
 import initI18n from './i18n/i18n';
 import CvPage from './pages/cv/cvPage';
+import Blog from './pages/blog';
+import BlogPost from './pages/blog/BlogPost/BlogPost';
 
 initReactnPersist({ storage: localStorage });
 setGlobal({ loginResult: null });
@@ -51,7 +53,9 @@ const App = () => {
           <div id="content">
             <Switch>
               <Route exact path="/" component={() => { return <div>Home</div> }} />
-              <ProtectedRoute exact path="/blog" component={() => { return <div>Blog</div> }} roles={["Admin"]} />
+              <Route exact path="/blog" component={Blog} />
+              <Route path="/blog/:id" component={BlogPost} />
+              <ProtectedRoute exact path="/projects" component={() => { return <>Projects page</> }} roles={["Admin"]} />
               <Route exact path="/cv" component={CvPage} />
               <Route component={NotFound} />
             </Switch>

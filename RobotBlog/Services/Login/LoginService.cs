@@ -19,14 +19,16 @@ namespace RobotBlog.Services.Login
 
         public async Task<User> Login(string email, string password)
         {
-            var result = await _context.User.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+            var result = await _context.User
+                .Include(u => u.BlogPosts)
+                .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
             return result;
         }
 
         public async Task<User> Register(RegisterDTO registerDTO)
         {
             //TODO: activation email
-            User result = null;
+            User result;
 
             var user = new User
             {
@@ -41,7 +43,7 @@ namespace RobotBlog.Services.Login
                 result = (await _context.User.AddAsync(user)).Entity;
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException e)
+            catch (DbUpdateException)
             {
                 result = null;
             }

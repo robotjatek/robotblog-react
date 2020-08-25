@@ -25,5 +25,8 @@
         "cancel": "Mégsem",
         "failed": "Bejelentkezés sikertelen",
         "registration-failed": "A regisztráció sikertelen volt"
+    },
+    "blog": {
+        "not-available": "Ez a tartalom {{language}} nyelven nem elérhető"
     }
 }
