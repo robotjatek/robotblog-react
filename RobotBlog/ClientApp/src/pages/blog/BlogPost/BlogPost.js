@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "reactn";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import blogService from "../../../services/blog/blog.service";
-import NotAvailable from "../NotAvailable"
+import NotAvailable from "../components/NotAvailable"
 import Loading from "../../../components/loading/loading";
 import Post from "../components/Post";
 
