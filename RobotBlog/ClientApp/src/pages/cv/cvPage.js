@@ -21,7 +21,7 @@ const CvPage = () => {
     };
 
     loadCv();
-  }, [i18n.language]);
+  }, [i18n.language, i18n]);
 
   /* eslint-disable react/no-danger */
   return (<div dangerouslySetInnerHTML={{ __html: cv }} />);

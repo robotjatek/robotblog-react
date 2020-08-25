@@ -39,12 +39,12 @@ const Post = ({ currentPost }) => {
 
 Post.propTypes = {
   currentPost: PropTypes.shape({
-    date: PropTypes.instanceOf(Date),
+    date: PropTypes.string.isRequired,
     blogPostId: PropTypes.number.isRequired,
     translated: PropTypes.shape({
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
     user: PropTypes.shape({
       username: PropTypes.string.isRequired,
     }).isRequired,
