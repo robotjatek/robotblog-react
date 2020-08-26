@@ -1,9 +1,11 @@
 import React from 'reactn';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import mdService from '../../../../services/md/md.service';
 
 const Post = ({ currentPost }) => {
   const date = new Date(currentPost.date);
+  const mdContent = mdService.createMdFromString(currentPost.translated.content);
 
   const getDate = () => {
     const correctDate = (toCorrect) => {
@@ -30,7 +32,8 @@ const Post = ({ currentPost }) => {
           {`${currentPost.user.username} | ${getDate()}`}
         </p>
         <hr />
-        <p>{currentPost.translated.content}</p>
+        {/* eslint-disable react/no-danger */}
+        <div dangerouslySetInnerHTML={{ __html: mdContent }} />
         <hr />
       </>
     )

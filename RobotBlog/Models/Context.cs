@@ -101,7 +101,7 @@ namespace RobotBlog.Models
                     Language = "en",
                     BlogPostID = 2,
                     Title = "English title2",
-                    Content = "English content2"
+                    Content = "English content2\r\n*Second Paragraph*"
                 });
         }
     }

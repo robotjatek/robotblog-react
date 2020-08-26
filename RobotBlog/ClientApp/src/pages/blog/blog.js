@@ -27,11 +27,16 @@ const Blog = () => {
           // TODO: filter on server side? or do not filter at all => show empty post with "This content is not available in this language?"
           const currentBlogs = translations.filter((item) => item.language === i18n.language);
           return currentBlogs.map((translated) => {
+            const firstParagraphTranslated = {
+              ...translated,
+              content: translated.content.split(/\r?\n/)[0],
+            };
+
             const current = {
               blogPostId: post.blogPostId,
               date: post.date,
               user: post.user,
-              translated,
+              translated: firstParagraphTranslated,
             };
 
             return <Post currentPost={current} key={uuid()} />;

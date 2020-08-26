@@ -15,7 +15,6 @@ const BlogPost = () => {
   const [currentPost, setCurrentPost] = useState({ translated: null });
 
   const loadContent = useCallback(() => {
-    setLoading(true);
     const lang = i18n.language;
     if (blogPost) {
       const translated = blogPost.translatedBlogPosts.filter((b) => b.language === lang)[0];
@@ -27,14 +26,15 @@ const BlogPost = () => {
         translated,
       };
       setCurrentPost(currentPostData);
-      setLoading(false);
     }
   }, [blogPost, i18n.language]);
 
   useEffect(() => {
     const loadBlogPost = async () => {
+      setLoading(true);
       const post = await blogService.loadBlogPost(id);
       setBlogPost(post);
+      setLoading(false);
     };
 
     loadBlogPost();

@@ -29,7 +29,7 @@ namespace RobotBlog.Controllers
         public async Task<IActionResult> BlogPost(int id)
         {
             var result = await _blogService.GetBlogPost(id);
-            await Task.Delay(3000);
+            await Task.Delay(1000);
             return Ok(result);
         }
     }
