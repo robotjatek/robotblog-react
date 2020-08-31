@@ -9,6 +9,6 @@ namespace RobotBlog.Controllers.DTOs
         public string Email { get; set; }
 
         [Required]
-        public string Password { get; set; } //TODO: hash this
+        public string Password { get; set; }
     }
 }

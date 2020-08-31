@@ -1,20 +1,26 @@
 ﻿
+using System.Text;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+
+using RobotBlog.Services.Hash;
 
 namespace RobotBlog.Models
 {
     public class Context : DbContext
     {
         private readonly IConfiguration _configuration;
+        private readonly IHashService _hashService;
 
         public DbSet<User> User { get; set; }
 
         public DbSet<BlogPost> BlogPost { get; set; }
 
-        public Context(DbContextOptions<Context> dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
+        public Context(DbContextOptions<Context> dbContextOptions, IConfiguration configuration, IHashService hashService) : base(dbContextOptions)
         {
             _configuration = configuration;
+            _hashService = hashService;
             this.Database.EnsureCreated();
         }
 
@@ -45,7 +51,7 @@ namespace RobotBlog.Models
                 ID = 2,
                 Email = "user@a",
                 Username = "robotjatek",
-                Password = "a",
+                Password = _hashService.HashPassword("a", Encoding.UTF8.GetBytes("totallyRandomUserSalt")),
                 Role = Roles.User.ToString(),
                 PreferredLanguage = "hu"
             };
@@ -55,7 +61,7 @@ namespace RobotBlog.Models
                 ID = 1,
                 Email = "admin@a",
                 Username = "admin",
-                Password = "a",
+                Password = _hashService.HashPassword("a", Encoding.UTF8.GetBytes("totallyRandomAdminSalt")),
                 Role = Roles.Admin.ToString(),
                 PreferredLanguage = "en",
             };

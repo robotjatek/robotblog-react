@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using RobotBlog.Controllers;
 using RobotBlog.Models;
 using RobotBlog.Services.Blog;
+using RobotBlog.Services.Hash;
 using RobotBlog.Services.Login;
 
 namespace RobotBlog
@@ -101,6 +102,7 @@ namespace RobotBlog
 
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IBlogService, BlogService>();
+            services.AddSingleton<IHashService, HashService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
