@@ -9,7 +9,7 @@ namespace RobotBlog.Services.Hash
     {
         private const int _lanes = 12;
         private const int _threads = 12;
-        private const int _cost = 65535;
+        private const int _cost = 4096;
 
         public byte[] CreateSalt()
         {
@@ -34,7 +34,8 @@ namespace RobotBlog.Services.Hash
                 Salt = salt,
                 MemoryCost = _cost,
             };
-            var argon = new Argon2(argonConfig);
+
+            using (var argon = new Argon2(argonConfig))
             using (var hash = argon.Hash())
             {
                 result = argonConfig.EncodeString(hash.Buffer);
