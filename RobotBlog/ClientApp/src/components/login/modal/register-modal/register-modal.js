@@ -54,7 +54,7 @@ const RegisterModalContent = (props) => {
           <Form.Group>
             <Form.Label>{t('login.password-confirmation')}</Form.Label>
             <Form.Control isInvalid={!isPasswordValid()} type="password" value={passwordConfirm} onChange={onPasswordConfirmChange} placeholder={t('login.password-confirmation')} required />
-            <FormControl.Feedback type="invalid">{t('login.please-match-passwords')}</FormControl.Feedback>
+            <Form.Control.Feedback type="invalid">{t('login.please-match-passwords')}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="float-right">
             <Button type="button" variant="secondary" onClick={onCancel}>{t('login.cancel')}</Button>
