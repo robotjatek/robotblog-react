@@ -7,11 +7,16 @@ import AlertComponent from '../../../alert/AlertComponent';
 const RegisterModalContent = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const { t } = useTranslation();
+
+  const isPasswordValid = () => passwordConfirm === password;
 
   const onSubmit = (event) => {
     event.preventDefault();
-    props.onAccept(email, password);
+    if (isPasswordValid()) {
+      props.onAccept(email, password);
+    }
   };
 
   const onCancel = () => {
@@ -24,6 +29,10 @@ const RegisterModalContent = (props) => {
 
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+
+  const onPasswordConfirmChange = (event) => {
+    setPasswordConfirm(event.target.value);
   };
 
   return (
@@ -41,6 +50,11 @@ const RegisterModalContent = (props) => {
           <Form.Group>
             <Form.Label>{t('login.password')}</Form.Label>
             <Form.Control type="password" value={password} onChange={onPasswordChange} placeholder={t('login.password')} required />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>{t('login.password-confirmation')}</Form.Label>
+            <Form.Control isInvalid={!isPasswordValid()} type="password" value={passwordConfirm} onChange={onPasswordConfirmChange} placeholder={t('login.password-confirmation')} required />
+            <FormControl.Feedback type="invalid">{t('login.please-match-passwords')}</FormControl.Feedback>
           </Form.Group>
           <Form.Group className="float-right">
             <Button type="button" variant="secondary" onClick={onCancel}>{t('login.cancel')}</Button>

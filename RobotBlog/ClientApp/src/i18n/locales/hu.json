@@ -1,32 +1,34 @@
 {
-    "nav": {
-        "home": "Főoldal",
-        "blog": "Blog",
-        "cv": "CV",
-        "projects": "Projektek",
-        "social": "Social"
-    },
-    "not_found": {
-        "not_found": "Az oldal nem található"
-    },
-    "lang": {
-        "en": "English",
-        "hu": "Magyar",
-        "language": "Nyelv"
-    },
-    "login": {
-        "login": "Bejelentkezés",
-        "register": "Regisztráció",
-        "settings": "Beállítások",
-        "logout": "Kijelentkezés",
-        "email": "Email",
-        "password": "Jelszó",
-        "enter-email": "Email",
-        "cancel": "Mégsem",
-        "failed": "Bejelentkezés sikertelen",
-        "registration-failed": "A regisztráció sikertelen volt"
-    },
-    "blog": {
-        "not-available": "Ez a tartalom {{language}} nyelven nem elérhető"
-    }
+  "nav": {
+    "home": "Főoldal",
+    "blog": "Blog",
+    "cv": "CV",
+    "projects": "Projektek",
+    "social": "Social"
+  },
+  "not_found": {
+    "not_found": "Az oldal nem található"
+  },
+  "lang": {
+    "en": "English",
+    "hu": "Magyar",
+    "language": "Nyelv"
+  },
+  "login": {
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
+    "settings": "Beállítások",
+    "logout": "Kijelentkezés",
+    "email": "Email",
+    "password": "Jelszó",
+    "enter-email": "Email",
+    "cancel": "Mégsem",
+    "failed": "Bejelentkezés sikertelen",
+    "registration-failed": "A regisztráció sikertelen volt",
+    "password-confirmation": "Jelszó megerősítése",
+    "please-match-passwords": "A megadott jelszavaknak egyeznie kell!"
+  },
+  "blog": {
+    "not-available": "Ez a tartalom {{language}} nyelven nem elérhető"
+  }
 }
