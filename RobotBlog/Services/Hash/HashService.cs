@@ -14,16 +14,13 @@ namespace RobotBlog.Services.Hash
         public byte[] CreateSalt()
         {
             var buffer = new byte[1024];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(buffer);
-            }
+            using var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(buffer);
             return buffer;
         }
 
         public string HashPassword(string password, byte[] salt)
         {
-            string result;
             var passwordBytes = Encoding.UTF8.GetBytes(password);
 
             var argonConfig = new Argon2Config
@@ -35,13 +32,9 @@ namespace RobotBlog.Services.Hash
                 MemoryCost = _cost,
             };
 
-            using (var argon = new Argon2(argonConfig))
-            using (var hash = argon.Hash())
-            {
-                result = argonConfig.EncodeString(hash.Buffer);
-            }
-
-            return result;
+            using var argon = new Argon2(argonConfig);
+            using var hash = argon.Hash();
+            return argonConfig.EncodeString(hash.Buffer);
         }
 
         public bool Verify(string dbPassword, string incomingPassword)
