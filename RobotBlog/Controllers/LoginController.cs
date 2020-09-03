@@ -41,9 +41,21 @@ namespace RobotBlog.Controllers
         public async Task<IActionResult> Authenticate([FromBody] LoginDTO login)
         {
             var user = await _loginService.Login(login.Email, login.Password);
+
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized(new LoginErrorDTO
+                {
+                    Reason = LoginErrorReason.UnkownUser
+                });
+            }
+
+            if (user.ActivationToken != null)
+            {
+                return StatusCode(403, new LoginErrorDTO
+                {
+                    Reason = LoginErrorReason.Inactive
+                });
             }
 
             var token = this.GenerateJwtToken(user);
@@ -66,6 +78,14 @@ namespace RobotBlog.Controllers
             }
 
             return Ok(user);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Activate([FromBody] ActivationDTO dto)
+        {
+            await _loginService.Activate(dto.Token);
+            return Ok();
         }
 
         private string GenerateJwtToken(User user)

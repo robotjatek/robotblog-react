@@ -31,11 +31,21 @@ const Login = () => {
 
   const onLoginAccept = async (email, password) => {
     const result = await loginService.Login(email, password);
-    if (result) {
-      setGlobalState({ loginResult: result });
-      setModalVisible(false);
-    } else {
-      alertService.showAlert(t('login.failed'), AlertType.DANGER, 5000);
+
+    switch (result.status) {
+      case 200:
+        setGlobalState({ loginResult: result.data });
+        setModalVisible(false);
+        break;
+      case 401:
+        alertService.showAlert(t('login.401'), AlertType.DANGER, 5000);
+        break;
+      case 403:
+        alertService.showAlert(t('login.403'), AlertType.DANGER, 5000);
+        break;
+      default:
+        alertService.showAlert(t('login.failed'), AlertType.DANGER, 5000);
+        break;
     }
   };
 

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,11 +12,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+using RazorLight;
+
+using RobotBlog.Configuration;
 using RobotBlog.Controllers;
 using RobotBlog.Models;
 using RobotBlog.Services.Blog;
 using RobotBlog.Services.Hash;
 using RobotBlog.Services.Login;
+using RobotBlog.Services.Mail;
 
 namespace RobotBlog
 {
@@ -32,6 +37,10 @@ namespace RobotBlog
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .Configure<MailConfiguration>(configuration.GetSection(MailConfiguration.SECTION))
+                .Configure<UserConfiguration>(configuration.GetSection(UserConfiguration.SECTION));
+
             services
                 .AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -103,6 +112,16 @@ namespace RobotBlog
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IBlogService, BlogService>();
             services.AddSingleton<IHashService, HashService>();
+            services.AddSingleton<IMailService, MailService>();
+            services.AddSingleton<EmailTranslator>();
+
+            var templatesPath = Path.Combine(Directory.GetCurrentDirectory(), "Templates");
+            var templateEngine = new RazorLightEngineBuilder()
+            .UseFileSystemProject(templatesPath)
+            .UseMemoryCachingProvider()
+            .Build();
+
+            services.AddSingleton(templateEngine);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

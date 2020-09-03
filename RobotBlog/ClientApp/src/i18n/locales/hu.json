@@ -26,7 +26,11 @@
     "failed": "Bejelentkezés sikertelen",
     "registration-failed": "A regisztráció sikertelen volt",
     "password-confirmation": "Jelszó megerősítése",
-    "please-match-passwords": "A megadott jelszavaknak egyeznie kell!"
+    "please-match-passwords": "A megadott jelszavaknak egyeznie kell!",
+    "activation-successful": "Sikeres aktiváció. Most már bejelentkezhet!",
+    "activation-failed": "Az aktiválás sikertelen volt!",
+    "401": "Hibás email cím vagy jelszó",
+    "403": "Nem aktivált felhasználó"
   },
   "blog": {
     "not-available": "Ez a tartalom {{language}} nyelven nem elérhető"

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -14,6 +13,11 @@ namespace RobotBlog.Models
 
     public class User
     {
+        public User()
+        {
+            PreferredLanguage = "hu"; //TODO: remove constructor when the PreferredLanguage setting is exposed on the frontend
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? ID { get; set; }
@@ -31,9 +35,10 @@ namespace RobotBlog.Models
         [Required]
         public string Role { get; set; }
 
-        [DefaultValue("hu")]
         public string PreferredLanguage { get; set; }
 
         public ICollection<BlogPost> BlogPosts { get; set; }
+
+        public string ActivationToken { get; set; }
     }
 }

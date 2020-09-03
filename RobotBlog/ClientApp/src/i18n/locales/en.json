@@ -26,7 +26,11 @@
     "failed": "Login failed",
     "registration-failed": "Registration failed",
     "password-confirmation": "Confirm password",
-    "please-match-passwords": "Passwords must match"
+    "please-match-passwords": "Passwords must match",
+    "activation-successful": "Activation successful! Now you can log in.",
+    "activation-failed": "Activation failed.",
+    "401": "Wrong email or password",
+    "403": "Inactive user"
   },
   "blog": {
     "not-available": "This content is not available in {{language}}"
