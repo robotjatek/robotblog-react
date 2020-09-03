@@ -31,7 +31,6 @@ const Login = () => {
 
   const onLoginAccept = async (email, password) => {
     const result = await loginService.Login(email, password);
-
     switch (result.status) {
       case 200:
         setGlobalState({ loginResult: result.data });
@@ -49,8 +48,8 @@ const Login = () => {
     }
   };
 
-  const onRegisterAccept = async (email, password) => {
-    const result = await loginService.Register(email, password);
+  const onRegisterAccept = async (email, password, username, language) => {
+    const result = await loginService.Register(email, password, username, language);
     if (result) {
       setModalVisible(false);
     } else {

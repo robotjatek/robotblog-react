@@ -10,9 +10,14 @@ const loginService = {
     }
   },
 
-  Register: async (email, password) => {
+  Register: async (email, password, username, preferredLanguage) => {
     try {
-      const result = await axios.post('/api/login/register', { email, password });
+      const result = await axios.post('/api/login/register', {
+        email,
+        password,
+        username,
+        preferredLanguage,
+      });
       return result;
     } catch (e) {
       return e.response;

@@ -8,12 +8,13 @@ namespace RobotBlog.Services.Mail
 {
     public class EmailTranslator
     {
-        public async Task<ICollection<KeyValuePair<string, object>>> Translate(RazorLightEngine templateEngine, Dictionary<string, string> translations, object model)
+        public async Task<ICollection<KeyValuePair<string, object>>> Translate(RazorLightEngine templateEngine, Dictionary<string, string> translations, object model, string languageHint)
         {
             var renderData = (ICollection<KeyValuePair<string, object>>)new ExpandoObject();
             foreach (var item in translations)
             {
-                var toAdd = new KeyValuePair<string, object>(item.Key, await templateEngine.CompileRenderStringAsync(item.Key, item.Value, model));
+                var cacheKey = $"{item.Key}-{languageHint}";
+                var toAdd = new KeyValuePair<string, object>(item.Key, await templateEngine.CompileRenderStringAsync(cacheKey, item.Value, model));
                 renderData.Add(toAdd);
             }
 

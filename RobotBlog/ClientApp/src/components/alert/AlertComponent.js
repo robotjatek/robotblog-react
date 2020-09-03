@@ -1,12 +1,22 @@
-import React, { useGlobal } from 'reactn';
+import React, { useGlobal, useEffect } from 'reactn';
 import { Alert } from 'react-bootstrap';
 import './alert-component.css';
 
 const AlertComponent = () => {
-  const [alert] = useGlobal('alertProps');
+  const [alertProps, setAlertProps] = useGlobal('alertProps');
+
+  useEffect(() => {
+    if (alertProps?.show) {
+      setTimeout(() => {
+        setAlertProps(null);
+      }, 5000);
+    }
+  }, []); // TODO: remove this hack when reactn-persist blacklist gets implemented
 
   return (
-    <Alert show={alert?.show} variant={alert?.type}>{alert?.message}</Alert>
+    alertProps?.show
+      ? <Alert show={alertProps?.show} variant={alertProps?.type}>{alertProps?.message}</Alert>
+      : <></>
   );
 };
 
