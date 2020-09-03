@@ -65,7 +65,7 @@ namespace RobotBlog.Services.Mail
                 user.Username
             };
 
-            var translatedModel = await _emailTranslator.Translate(_templateEngine, translationDefinition, model);
+            var translatedModel = await _emailTranslator.Translate(_templateEngine, translationDefinition, model, language);
             translatedModel.Add(new KeyValuePair<string, object>("url", $"{_configuration.ActivationURL}/{user.ActivationToken}"));
 
             var result = await _templateEngine.CompileRenderAsync("Activation/template.cshtml", translatedModel);

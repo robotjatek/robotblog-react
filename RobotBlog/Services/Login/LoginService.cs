@@ -50,6 +50,8 @@ namespace RobotBlog.Services.Login
             var user = new User
             {
                 Email = registerDTO.Email,
+                Username = registerDTO.Username,
+                PreferredLanguage = registerDTO.PreferredLanguage,
                 Password = hash,
                 Role = Roles.User.ToString(),
             };

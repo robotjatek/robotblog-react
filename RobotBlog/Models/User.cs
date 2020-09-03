@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+
+using Newtonsoft.Json;
 
 namespace RobotBlog.Models
 {
@@ -26,15 +27,17 @@ namespace RobotBlog.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [Required]
         public string Username { get; set; }
 
-        [JsonIgnore]
         [Required]
+        [JsonIgnore]
         public string Password { get; set; }
 
         [Required]
         public string Role { get; set; }
 
+        [Required]
         public string PreferredLanguage { get; set; }
 
         public ICollection<BlogPost> BlogPosts { get; set; }
