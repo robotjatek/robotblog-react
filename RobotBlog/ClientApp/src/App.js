@@ -19,6 +19,7 @@ import initI18n from './i18n/i18n';
 import CvPage from './pages/cv/cvPage';
 import Blog from './pages/blog';
 import BlogPost from './pages/blog/BlogPost';
+import ActivateAccountPage from './pages/activate';
 
 initReactnPersist({ storage: localStorage });
 setGlobal({ loginResult: null });
@@ -62,6 +63,7 @@ const App = () => {
               <Route path="/blog/:id" component={BlogPost} />
               <ProtectedRoute exact path="/projects" component={() => <>Projects page</>} roles={['Admin']} />
               <Route exact path="/cv" component={CvPage} />
+              <Route path="/activate/:token" component={ActivateAccountPage} />
               <Route component={NotFound} />
             </Switch>
           </div>

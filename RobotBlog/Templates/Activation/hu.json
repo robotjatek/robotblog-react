@@ -1,0 +1,7 @@
+﻿{
+  "title": "Aktiváld felhasználói fiókodat",
+  "greeting": "Hello, @Model.Username!",
+  "lead": "Kösz hogy regisztráltál a RobotBlogra!",
+  "text": "Fiókodat az alábbi gombra kattintva aktiválhatod:",
+  "button_caption": "Fiók aktiválása"
+}

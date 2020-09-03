@@ -7,6 +7,7 @@ namespace RobotBlog.Services.Hash
 {
     public class HashService : IHashService
     {
+        //TODO: Move these into a configuration file
         private const int _lanes = 12;
         private const int _threads = 12;
         private const int _cost = 4096;

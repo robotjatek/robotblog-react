@@ -1,0 +1,7 @@
+{
+  "title": "Activate your account",
+  "greeting": "Hi, @Model.Username!",
+  "lead": "Thank you for registering to RobotBlog!",
+  "text": "You can activate your account by clicking the button below:",
+  "button_caption": "Activate account"
+}
