@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
+using RazorLight;
 
 using RobotBlog.Configuration;
 using RobotBlog.Controllers;
@@ -110,6 +113,15 @@ namespace RobotBlog
             services.AddTransient<IBlogService, BlogService>();
             services.AddSingleton<IHashService, HashService>();
             services.AddSingleton<IMailService, MailService>();
+            services.AddSingleton<EmailTranslator>();
+
+            var templatesPath = Path.Combine(Directory.GetCurrentDirectory(), "Templates");
+            var templateEngine = new RazorLightEngineBuilder()
+            .UseFileSystemProject(templatesPath)
+            .UseMemoryCachingProvider()
+            .Build();
+
+            services.AddSingleton(templateEngine);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -21,10 +21,14 @@ namespace RobotBlog.Services.Mail
     public class MailService : IMailService
     {
         private readonly MailConfiguration _configuration;
+        private readonly EmailTranslator _emailTranslator;
+        private readonly RazorLightEngine _templateEngine;
 
-        public MailService(IOptions<MailConfiguration> configuration)
+        public MailService(IOptions<MailConfiguration> configuration, EmailTranslator emailTranslator, RazorLightEngine templateEngine)
         {
             _configuration = configuration.Value;
+            _emailTranslator = emailTranslator;
+            _templateEngine = templateEngine;
         }
 
         public async Task SendActivationEmail(User user)
@@ -56,21 +60,15 @@ namespace RobotBlog.Services.Mail
             var translationJson = File.ReadAllText(translationPath);
             var translationDefinition = JsonConvert.DeserializeObject<Dictionary<string, string>>(translationJson);
 
-            var templateEngine = new RazorLightEngineBuilder()
-                .UseFileSystemProject(templatesPath)
-                .UseMemoryCachingProvider()
-                .Build();
-
             var model = new
             {
                 user.Username
             };
 
-            var translator = new EmailTranslator();
-            var translatedModel = await translator.Translate(templateEngine, translationDefinition, model);
+            var translatedModel = await _emailTranslator.Translate(_templateEngine, translationDefinition, model);
             translatedModel.Add(new KeyValuePair<string, object>("url", $"{_configuration.ActivationURL}/{user.ActivationToken}"));
 
-            var result = await templateEngine.CompileRenderAsync("Activation/template.cshtml", translatedModel);
+            var result = await _templateEngine.CompileRenderAsync("Activation/template.cshtml", translatedModel);
             return result;
         }
     }
