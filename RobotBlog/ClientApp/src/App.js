@@ -20,6 +20,7 @@ import CvPage from './pages/cv/cvPage';
 import Blog from './pages/blog';
 import BlogPost from './pages/blog/BlogPost';
 import ActivateAccountPage from './pages/activate';
+import PasswordResetPage from './pages/password-reset';
 
 initReactnPersist({ storage: localStorage });
 setGlobal({ loginResult: null });
@@ -64,6 +65,7 @@ const App = () => {
               <ProtectedRoute exact path="/projects" component={() => <>Projects page</>} roles={['Admin']} />
               <Route exact path="/cv" component={CvPage} />
               <Route path="/activate/:token" component={ActivateAccountPage} />
+              <Route path="/password-reset/:token" component={PasswordResetPage} />
               <Route component={NotFound} />
             </Switch>
           </div>

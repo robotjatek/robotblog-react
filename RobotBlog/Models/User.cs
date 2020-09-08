@@ -43,5 +43,7 @@ namespace RobotBlog.Models
         public ICollection<BlogPost> BlogPosts { get; set; }
 
         public string ActivationToken { get; set; }
+
+        public string PasswordResetToken { get; set; }
     }
 }

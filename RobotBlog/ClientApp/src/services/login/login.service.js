@@ -23,6 +23,16 @@ const loginService = {
       return e.response;
     }
   },
+
+  Reset: async (email) => {
+    const result = await axios.post('/api/login/requestresetmail', { email });
+    return result;
+  },
+
+  ResetWithToken: async (token, password) => {
+    const result = await axios.post('/api/login/passwordreset', { token, password });
+    return result;
+  },
 };
 
 export default loginService;

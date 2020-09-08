@@ -81,3 +81,20 @@
 .btn-primary {
     background-color: rgb(56,137,239);
 }
+
+.forgot_password {
+  color: white;
+  font-size: 11px;
+  display: contents;
+}
+
+.forgot_password button{
+  color: white;
+  font-size: 11px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.forgot_password button:hover{
+  color: white;
+}

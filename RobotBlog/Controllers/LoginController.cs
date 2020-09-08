@@ -88,6 +88,22 @@ namespace RobotBlog.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> PasswordReset([FromBody] PasswordResetDTO dto)
+        {
+            await _loginService.ResetPassword(dto.Token, dto.Password); //TODO: check with null token
+            return Ok(); //TODO: nem létező token
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> RequestResetMail([FromBody] PasswordResetRequestDTO dto)
+        {
+            await _loginService.SendPasswordResetMail(dto.Email);
+            return Ok(); //TODO: nem létező account
+        }
+
         private string GenerateJwtToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

@@ -32,7 +32,10 @@
     "activation-successful": "Activation successful! Now you can log in.",
     "activation-failed": "Activation failed.",
     "401": "Wrong email or password",
-    "403": "Inactive user"
+    "403": "Inactive user",
+    "did-you-forget": "Did you forget your password?",
+    "reset-password": "Reset password",
+    "reset-successful": "Password reset was successful"
   },
   "blog": {
     "not-available": "This content is not available in {{language}}"

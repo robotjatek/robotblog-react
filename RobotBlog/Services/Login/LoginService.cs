@@ -87,5 +87,35 @@ namespace RobotBlog.Services.Login
             toActivate.ActivationToken = null;
             await _context.SaveChangesAsync();
         }
+
+        public async Task ResetPassword(string token, string password)
+        {
+            var toReset = await _context.User.FirstOrDefaultAsync(u => u.PasswordResetToken == token);
+            if (toReset == null)
+            {
+                //TODO: error
+            }
+
+            toReset.PasswordResetToken = null;
+            var salt = _hashService.CreateSalt();
+            var hash = _hashService.HashPassword(password, salt);
+            toReset.Password = hash;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task SendPasswordResetMail(string email)
+        {
+            var toReset = await _context.User.FirstOrDefaultAsync(u => u.Email == email);
+            if (toReset == null)
+            {
+                //TODO: error
+            }
+
+            var resetToken = Guid.NewGuid().ToString(); //TODO: set password reset expiration
+            toReset.PasswordResetToken = resetToken;
+            await _context.SaveChangesAsync();
+
+            await _mailService.SendPasswordResetEmail(toReset);
+        }
     }
 }

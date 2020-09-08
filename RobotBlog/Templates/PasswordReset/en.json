@@ -1,0 +1,7 @@
+{
+  "title": "Password reset",
+  "greeting": "Hi, @Model.Username!",
+  "lead": "Somebody has requested a password reset on our website. (If you think that this is a mistake, you can ignore this message.)",
+  "text": "You can reset your password by clicking the button below:",
+  "button_caption": "Reset password"
+}
