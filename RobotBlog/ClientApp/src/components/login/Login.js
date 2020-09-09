@@ -65,8 +65,10 @@ const Login = () => {
 
   const onResetAccept = async (email) => {
     const result = await loginService.Reset(email);
-    if (result) {
-      setModalVisible(false);
+    if (result.status >= 200 && result.status < 300) {
+      alertService.showAlert(t('login.reset-email-sent'), AlertType.INFO, 5000);
+    } else {
+      alertService.showAlert(t('login.reset-unkown-account'), AlertType.DANGER, 5000);
     }
   };
 

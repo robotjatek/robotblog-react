@@ -2,6 +2,7 @@ import React, { useState } from 'reactn';
 import PropTypes from 'prop-types';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import AlertComponent from '../../../alert/AlertComponent';
 
 const PasswordResetModal = (props) => {
   const [email, setEmail] = useState('');
@@ -26,6 +27,7 @@ const PasswordResetModal = (props) => {
         <Modal.Title>{t('login.reset-password')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <AlertComponent />
         <Form onSubmit={onSubmit}>
           <Form.Group>
             <Form.Label>{t('login.email')}</Form.Label>

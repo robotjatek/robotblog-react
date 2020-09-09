@@ -35,7 +35,10 @@
     "403": "Inactive user",
     "did-you-forget": "Did you forget your password?",
     "reset-password": "Reset password",
-    "reset-successful": "Password reset was successful"
+    "reset-successful": "Password reset was successful",
+    "reset-failed": "Password reset failed",
+    "reset-unkown-account": "Unkown account",
+    "reset-email-sent": "A password reset email has been sent"
   },
   "blog": {
     "not-available": "This content is not available in {{language}}"

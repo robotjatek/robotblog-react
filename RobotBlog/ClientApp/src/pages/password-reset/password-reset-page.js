@@ -27,8 +27,10 @@ const PasswordResetPage = () => {
     e.preventDefault();
     if (isPasswordValid()) {
       const result = await loginService.ResetWithToken(token, password);
-      if (result) {
+      if (result.status >= 200 && result.status < 300) {
         alertService.showAlert(t('login.reset-successful'), AlertType.SUCCESS, 5000);
+      } else {
+        alertService.showAlert(t('login.reset-failed'), AlertType.DANGER, 5000);
       }
     }
   };

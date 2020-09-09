@@ -5,13 +5,14 @@ import './alert-component.css';
 const AlertComponent = () => {
   const [alertProps, setAlertProps] = useGlobal('alertProps');
 
+  // TODO: remove this hack when reactn-persist blacklist gets implemented
   useEffect(() => {
     if (alertProps?.show) {
       setTimeout(() => {
         setAlertProps(null);
       }, 5000);
     }
-  }, []); // TODO: remove this hack when reactn-persist blacklist gets implemented
+  }, [alertProps, setAlertProps]);
 
   return (
     alertProps?.show

@@ -35,7 +35,10 @@
     "403": "Nem aktivált felhasználó",
     "did-you-forget": "Elfelejtetted a jelszavad?",
     "reset-password": "Jelszó törlése",
-    "reset-successful": "A jelszó módosítása sikeres volt"
+    "reset-successful": "A jelszó módosítása sikeres volt",
+    "reset-failed": "A jelszó módosítása sikertelen volt",
+    "reset-unkown-account": "Ismeretlen felhasználó",
+    "reset-email-sent": "A megadott emailre elküldésre került a jelszó törlést kezdeményező email"
   },
   "blog": {
     "not-available": "Ez a tartalom {{language}} nyelven nem elérhető"

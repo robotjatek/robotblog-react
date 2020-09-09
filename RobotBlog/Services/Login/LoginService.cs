@@ -90,16 +90,22 @@ namespace RobotBlog.Services.Login
 
         public async Task ResetPassword(string token, string password)
         {
-            var toReset = await _context.User.FirstOrDefaultAsync(u => u.PasswordResetToken == token);
+            var date = DateTime.Now.AddDays(-1);
+            var toReset = await _context.User.FirstOrDefaultAsync(u =>
+                u.PasswordResetToken == token &&
+                u.PasswordResetTime != null &&
+                date <= u.PasswordResetTime.Value);
+
             if (toReset == null)
             {
-                //TODO: error
+                throw new UnknownTokenException();
             }
 
-            toReset.PasswordResetToken = null;
             var salt = _hashService.CreateSalt();
             var hash = _hashService.HashPassword(password, salt);
             toReset.Password = hash;
+            toReset.PasswordResetToken = null;
+            toReset.PasswordResetTime = null;
             await _context.SaveChangesAsync();
         }
 
@@ -108,11 +114,13 @@ namespace RobotBlog.Services.Login
             var toReset = await _context.User.FirstOrDefaultAsync(u => u.Email == email);
             if (toReset == null)
             {
-                //TODO: error
+                throw new UnknownAccountException();
             }
 
-            var resetToken = Guid.NewGuid().ToString(); //TODO: set password reset expiration
+            var resetToken = Guid.NewGuid().ToString();
+            var passwordResetTime = DateTime.Now;
             toReset.PasswordResetToken = resetToken;
+            toReset.PasswordResetTime = passwordResetTime;
             await _context.SaveChangesAsync();
 
             await _mailService.SendPasswordResetEmail(toReset);

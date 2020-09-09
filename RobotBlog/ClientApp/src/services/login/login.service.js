@@ -25,13 +25,21 @@ const loginService = {
   },
 
   Reset: async (email) => {
-    const result = await axios.post('/api/login/requestresetmail', { email });
-    return result;
+    try {
+      const result = await axios.post('/api/login/requestresetmail', { email });
+      return result;
+    } catch (e) {
+      return e.response;
+    }
   },
 
   ResetWithToken: async (token, password) => {
-    const result = await axios.post('/api/login/passwordreset', { token, password });
-    return result;
+    try {
+      const result = await axios.post('/api/login/passwordreset', { token, password });
+      return result;
+    } catch (e) {
+      return e.response;
+    }
   },
 };
 
