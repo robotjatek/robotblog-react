@@ -88,6 +88,42 @@ namespace RobotBlog.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> PasswordReset([FromBody] PasswordResetDTO dto)
+        {
+            try
+            {
+                await _loginService.ResetPassword(dto.Token, dto.Password);
+                return Ok();
+            }
+            catch (UnknownTokenException)
+            {
+                return Unauthorized(new
+                {
+                    Reason = "invalid-token"
+                });
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> RequestResetMail([FromBody] PasswordResetRequestDTO dto)
+        {
+            try
+            {
+                await _loginService.SendPasswordResetMail(dto.Email);
+                return Ok();
+            }
+            catch (UnknownAccountException)
+            {
+                return Unauthorized(new
+                {
+                    Reason = "invalid-user"
+                });
+            }
+        }
+
         private string GenerateJwtToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

@@ -12,5 +12,9 @@ namespace RobotBlog.Services.Login
         Task<User> Register(RegisterDTO registerDTO);
 
         Task Activate(string token);
+
+        Task ResetPassword(string token, string password);
+
+        Task SendPasswordResetMail(string email);
     }
 }

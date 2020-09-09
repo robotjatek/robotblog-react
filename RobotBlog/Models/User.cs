@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -43,5 +44,9 @@ namespace RobotBlog.Models
         public ICollection<BlogPost> BlogPosts { get; set; }
 
         public string ActivationToken { get; set; }
+
+        public string PasswordResetToken { get; set; }
+
+        public DateTime? PasswordResetTime { get; set; }
     }
 }

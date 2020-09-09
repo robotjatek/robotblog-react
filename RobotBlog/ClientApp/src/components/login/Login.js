@@ -6,6 +6,7 @@ import LoginModalContent from './modal/login-modal/login-modal';
 import RegisterModalContent from './modal/register-modal/register-modal';
 import loginService from '../../services/login/login.service';
 import alertService, { AlertType } from '../../services/alert/alert.service';
+import PasswordResetModal from './modal/password-reset/password-reset-modal';
 
 const Login = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -23,6 +24,11 @@ const Login = () => {
   const onRegisterClick = () => {
     setModalVisible(true);
     setModalType('register');
+  };
+
+  const onResetClick = () => {
+    setModalVisible(true);
+    setModalType('reset');
   };
 
   const onLogoutClick = () => {
@@ -57,6 +63,44 @@ const Login = () => {
     }
   };
 
+  const onResetAccept = async (email) => {
+    const result = await loginService.Reset(email);
+    if (result.status >= 200 && result.status < 300) {
+      alertService.showAlert(t('login.reset-email-sent'), AlertType.INFO, 5000);
+    } else {
+      alertService.showAlert(t('login.reset-unkown-account'), AlertType.DANGER, 5000);
+    }
+  };
+
+  const getModal = () => {
+    switch (modalType) {
+      case 'login':
+        return (
+          <LoginModalContent
+            onHide={() => setModalVisible(false)}
+            onAccept={onLoginAccept}
+            onResetClick={onResetClick}
+          />
+        );
+      case 'register':
+        return (
+          <RegisterModalContent
+            onHide={() => setModalVisible(false)}
+            onAccept={onRegisterAccept}
+          />
+        );
+      case 'reset':
+        return (
+          <PasswordResetModal
+            onHide={() => setModalVisible(false)}
+            onAccept={onResetAccept}
+          />
+        );
+      default:
+        return (<></>);
+    }
+  };
+
   return (
     <div tabIndex="-1" id="header_profile">
       {loggedIn()
@@ -83,19 +127,7 @@ const Login = () => {
           </div>
         )}
       <Modal show={modalVisible} onHide={() => { setModalVisible(false); }}>
-        {modalType === 'login'
-          ? (
-            <LoginModalContent
-              onHide={() => setModalVisible(false)}
-              onAccept={onLoginAccept}
-            />
-          )
-          : (
-            <RegisterModalContent
-              onHide={() => setModalVisible(false)}
-              onAccept={onRegisterAccept}
-            />
-          )}
+        {getModal()}
       </Modal>
     </div>
   );

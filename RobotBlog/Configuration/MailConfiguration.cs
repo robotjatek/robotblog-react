@@ -12,5 +12,6 @@
         public string Password { get; set; }
         public string SenderMail { get; set; }
         public string ActivationURL { get; set; }
+        public string PasswordResetURL { get; set; }
     }
 }

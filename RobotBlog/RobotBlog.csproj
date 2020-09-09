@@ -32,12 +32,22 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\public\" />
+    <Folder Include="Templates\PasswordReset\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Templates\Activation\template.cshtml">
+    <None Include="Templates\template.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Templates\PasswordReset\en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Templates\PasswordReset\hu.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

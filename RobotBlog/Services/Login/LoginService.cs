@@ -87,5 +87,43 @@ namespace RobotBlog.Services.Login
             toActivate.ActivationToken = null;
             await _context.SaveChangesAsync();
         }
+
+        public async Task ResetPassword(string token, string password)
+        {
+            var date = DateTime.Now.AddDays(-1);
+            var toReset = await _context.User.FirstOrDefaultAsync(u =>
+                u.PasswordResetToken == token &&
+                u.PasswordResetTime != null &&
+                date <= u.PasswordResetTime.Value);
+
+            if (toReset == null)
+            {
+                throw new UnknownTokenException();
+            }
+
+            var salt = _hashService.CreateSalt();
+            var hash = _hashService.HashPassword(password, salt);
+            toReset.Password = hash;
+            toReset.PasswordResetToken = null;
+            toReset.PasswordResetTime = null;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task SendPasswordResetMail(string email)
+        {
+            var toReset = await _context.User.FirstOrDefaultAsync(u => u.Email == email);
+            if (toReset == null)
+            {
+                throw new UnknownAccountException();
+            }
+
+            var resetToken = Guid.NewGuid().ToString();
+            var passwordResetTime = DateTime.Now;
+            toReset.PasswordResetToken = resetToken;
+            toReset.PasswordResetTime = passwordResetTime;
+            await _context.SaveChangesAsync();
+
+            await _mailService.SendPasswordResetEmail(toReset);
+        }
     }
 }

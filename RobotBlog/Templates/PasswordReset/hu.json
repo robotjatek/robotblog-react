@@ -1,0 +1,7 @@
+﻿{
+  "title": "Jelszó törlése",
+  "greeting": "Hello, @Model.Username!",
+  "lead": "Valaki a jelszavad törlését kezdeményezte a webes felületünkről. (Amennyiben úgy gondolod hogy ez egy tévedés, akkor nyugodtan hagyd ezt az üzenetet figyelmen kívül.)",
+  "text": "Jelszavad az alábbi gombra kattintva törölheted:",
+  "button_caption": "Jelszó törlése"
+}
