@@ -1,13 +1,13 @@
-import axios from 'axios';
+import apiService from '../api/api.service';
 
 class BlogService {
   loadBlogPosts = async () => {
-    const result = await axios.get('api/blog/blogposts');
+    const result = await apiService.get('api/blog/blogposts');
     return result.data;
   }
 
   loadBlogPost = async (id) => {
-    const result = await axios.get(`/api/blog/blogpost/${id}`);
+    const result = await apiService.get(`/api/blog/blogpost/${id}`);
     return result.data;
   }
 }

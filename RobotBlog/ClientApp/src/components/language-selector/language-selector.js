@@ -46,6 +46,6 @@ const LanguageSelector = () => {
       </NavDropdown>
     </>
   );
-}
+};
 
 export default LanguageSelector;

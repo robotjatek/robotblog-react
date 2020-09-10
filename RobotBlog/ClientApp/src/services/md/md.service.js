@@ -1,5 +1,5 @@
-import axios from 'axios';
 import MarkdownIt from 'markdown-it';
+import apiService from '../api/api.service';
 
 class MdService {
   loadSanitizedMd = async (path) => {
@@ -16,7 +16,7 @@ class MdService {
   }
 
   __getMd = async (path) => {
-    const result = await axios.get(path);
+    const result = await apiService.get(path);
     return result.data;
   }
 }
