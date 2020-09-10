@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'reactn';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
 import Loading from '../../components/loading/loading';
+import loginService from '../../services/login/login.service';
 
 const ActivateAccountPage = () => {
   const { t } = useTranslation();
@@ -13,12 +13,10 @@ const ActivateAccountPage = () => {
 
   useEffect(() => {
     const sendActivationRequest = async () => {
-      try {
-        await axios.post('/api/login/activate/', { token });
-        setSuccess(true);
-      } catch (e) {
-        setSuccess(false);
-      }
+      const result = await loginService.ActivateAccount(token);
+      const requestSuccessful = result.status >= 200 && result.status < 300;
+      setSuccess(requestSuccessful);
+
       setInprogress(false);
     };
 
